@@ -63,7 +63,6 @@
 | house_number | string    | null: false                    |
 | building     | string    |                                |
 | phone_number | integer   | null: false                    |
-| user         | reference | null: false, foreign_key: true |
 
 ### Association
 
