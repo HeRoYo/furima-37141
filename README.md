@@ -21,18 +21,17 @@
 
 ## products テーブル
 
-| Column             | Type      | Options                        |
-|--------------------|-----------|--------------------------------|
-| image              | text      | null: false                    |
-| products_name      | string    | null: false                    |
-| description        | text      | null: false                    |
-| category           | integer   | null: false                    |
-| condition          | integer   | null: false                    |
-| delivery_change    | integer   | null: false                    |
-| delivery_source    | integer   | null: false                    |
-| preparation_period | integer   | null: false                    |
-| price              | integer   | null: false                    |
-| user               | reference | null: false, foreign_key: true |
+| Column                | Type      | Options                        |
+|-----------------------|-----------|--------------------------------|
+| products_name         | string    | null: false                    |
+| description           | text      | null: false                    |
+| category_id           | integer   | null: false                    |
+| condition_id          | integer   | null: false                    |
+| delivery_change_id    | integer   | null: false                    |
+| delivery_source_id    | integer   | null: false                    |
+| preparation_period_id | integer   | null: false                    |
+| price                 | integer   | null: false                    |
+| user                  | reference | null: false, foreign_key: true |
 
 ### Association
 
@@ -45,7 +44,6 @@
 |------------------|-----------|--------------------------------|
 | user             | reference | null: false, foreign_key: true |
 | product          | reference | null: false, foreign_key: true |
-| shipping_address | reference | null: false, foreign_key: true |
 
 ### Association
 
@@ -53,16 +51,17 @@
 - belongs_to: product
 - has_one: shipping_address
 
-## shipping_address
+## shipping_addresses
 
-| Column       | Type      | Options                        |
-|--------------|-----------|--------------------------------|
-| post_code    | integer   | null: false                    |
-| prefecture   | string    | null: false                    |
-| city         | string    | null: false                    |
-| house_number | string    | null: false                    |
-| building     | string    |                                |
-| phone_number | integer   | null: false                    |
+| Column          | Type       | Options                        |
+|-----------------|------------|--------------------------------|
+| post_code       | string     | null: false                    |
+| prefecture_id   | integer    | null: false                    |
+| city            | string     | null: false                    |
+| house_number    | string     | null: false                    |
+| building        | string     |                                |
+| phone_number    | string     | null: false                    |
+| purchase        | reference  | null: false, foreign_key: true |
 
 ### Association
 
