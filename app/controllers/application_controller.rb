@@ -15,4 +15,8 @@ class ApplicationController < ActionController::Base
                                       keys: [:nickname, :family_name_kanji, :first_name_kanji, :family_name_kana,
                                              :first_name_kana, :barth_day])
   end
+
+  def product_params
+    params.require(:product).permit(:image).marge(user_id: current_user.id)
+  end
 end
