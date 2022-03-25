@@ -16,7 +16,4 @@ class ApplicationController < ActionController::Base
                                              :first_name_kana, :barth_day])
   end
 
-  def product_params
-    params.require(:product).permit(:image).marge(user_id: current_user.id)
-  end
 end
