@@ -32,25 +32,50 @@ RSpec.describe Product, type: :model do
         @product.valid?
         expect(@product.errors.full_messages).to include("Category can't be blank")
       end
+      it 'カテゴリーに「---」が選択されている場合は出品できない' do
+        @product.category_id = 0
+        @product.valid?
+        expect(@product.errors.full_messages).to include("Category must be other than 0")
+      end
       it '状態の情報が無いと出品できない' do
         @product.condition = nil
         @product.valid?
         expect(@product.errors.full_messages).to include("Condition can't be blank")
+      end
+      it '商品の状態に「---」が選択されている場合は出品できない' do
+        @product.condition_id = 0
+        @product.valid?
+        expect(@product.errors.full_messages).to include("Condition must be other than 0")
       end
       it '配送料の負担の情報が無いと出品できない' do
         @product.delivery_change = nil
         @product.valid?
         expect(@product.errors.full_messages).to include("Delivery change can't be blank")
       end
+      it '配送料の負担に「---」が選択されている場合は出品できない' do
+        @product.delivery_change_id = 0
+        @product.valid?
+        expect(@product.errors.full_messages).to include("Delivery change must be other than 0")
+      end
       it '発送元の情報が無いと出品できない' do
         @product.delivery_source = nil
         @product.valid?
         expect(@product.errors.full_messages).to include("Delivery source can't be blank")
       end
+      it '発送元の地域に「---」が選択されている場合は出品できない' do
+        @product.delivery_source_id = 0
+        @product.valid?
+        expect(@product.errors.full_messages).to include("Delivery source must be other than 0")
+      end
       it '発送までの日数の情報が無いと出品できない' do
         @product.preparation_period = nil
         @product.valid?
         expect(@product.errors.full_messages).to include("Preparation period can't be blank")
+      end
+      it '発送までの日数に「---」が選択されている場合は出品できない' do
+        @product.preparation_period_id = 0
+        @product.valid?
+        expect(@product.errors.full_messages).to include("Preparation period must be other than 0")
       end
       it '価格の情報が無いと出品できない' do
         @product.price = ''
