@@ -4,11 +4,11 @@ FactoryBot.define do
     description           {Faker::Lorem.sentence}
     price                 {Faker::Number.between(from: 300, to: 9999999)}
 
-    category              {Category.all.sample}
-    condition             {Condition.all.sample}
-    delivery_change       {DeliveryChange.all.sample}
-    delivery_source       {DeliverySource.all.sample}
-    preparation_period    {PreparationPeriod.all.sample}
+    category_id            {1}
+    condition_id           {1}
+    delivery_change_id     {1}
+    delivery_source_id     {1}
+    preparation_period_id  {1}
 
     association :user
 
