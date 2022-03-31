@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit]
   before_action :back_to_top, only: :edit
+  before_action :catch_product, only: [:edit, :update]
 
   def index
     @products = Product.all.order("created_at DESC")
@@ -25,11 +26,9 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    @product = Product.find(params[:id])
   end
 
   def update
-    @product = Product.find(params[:id])
     if @product.update(product_params)
       redirect_to item_path
     else
@@ -43,11 +42,14 @@ class ItemsController < ApplicationController
     params.require(:product).permit(:image, :products_name, :description, :category_id, :condition_id, :delivery_change_id, :delivery_source_id, :preparation_period_id, :price).merge(user_id: current_user.id)
   end
 
-  def back_to_top
+  def catch_product
     @product = Product.find(params[:id])
+  end
+
+  def back_to_top
+    catch_product
     unless current_user == @product.user
       redirect_to root_path
     end
   end
-
 end
