@@ -1,7 +1,8 @@
-class ItemsController < ApplicationController
+class ProductsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit]
   before_action :catch_product, only: [:edit, :update, :back_to_top]
   before_action :back_to_top, only: :edit
+  
   def index
     @products = Product.all.order("created_at DESC")
   end
@@ -29,7 +30,7 @@ class ItemsController < ApplicationController
 
   def update
     if @product.update(product_params)
-      redirect_to item_path
+      redirect_to product_path
     else
       render :edit
     end
