@@ -1,8 +1,7 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit]
+  before_action :catch_product, only: [:edit, :update, :back_to_top]
   before_action :back_to_top, only: :edit
-  before_action :catch_product, only: [:edit, :update]
-
   def index
     @products = Product.all.order("created_at DESC")
   end
@@ -47,7 +46,6 @@ class ItemsController < ApplicationController
   end
 
   def back_to_top
-    catch_product
     unless current_user == @product.user
       redirect_to root_path
     end
