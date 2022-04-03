@@ -3,6 +3,9 @@ class PurchasesController < ApplicationController
 
   def index
     @product = Product.find(params[:product_id])
+    if current_user == @product.user || @product.purchase.present?
+      redirect_to root_path
+    end
     @order_product = OrderProduct.new
   end
 
@@ -32,4 +35,5 @@ class PurchasesController < ApplicationController
       currency: 'jpy'
     )
   end
+
 end
