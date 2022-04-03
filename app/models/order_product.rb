@@ -1,7 +1,7 @@
 class OrderProduct
   include ActiveModel::Model
 
-  attr_accessor :user_id, :product_id, :post_code, :delivery_source_id, :city, :house_number, :building, :phone_number
+  attr_accessor :user_id, :product_id, :post_code, :delivery_source_id, :city, :house_number, :building, :phone_number, :token
 
   with_options presence: true do
     validates :user_id
@@ -11,6 +11,7 @@ class OrderProduct
     validates :city
     validates :house_number
     validates :phone_number, format: {with: /\A[0-9]{10,11}\z/, message: "is invalid. Do not include hyphen(-)"}
+    validates :token
   end
 
   def save
