@@ -1,8 +1,8 @@
 class PurchasesController < ApplicationController
   before_action :authenticate_user!
+  before_action :catch_product
 
   def index
-    @product = Product.find(params[:product_id])
     if current_user == @product.user || @product.purchase.present?
       redirect_to root_path
     end
@@ -10,7 +10,6 @@ class PurchasesController < ApplicationController
   end
 
   def create
-    @product = Product.find(params[:product_id])
     @order_product = OrderProduct.new(order_product_params)
     if @order_product.valid?
       @order_product.save
@@ -36,4 +35,7 @@ class PurchasesController < ApplicationController
     )
   end
 
+  def catch_product
+    @product = Product.find(params[:product_id])
+  end
 end
