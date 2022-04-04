@@ -4,9 +4,8 @@ class ProductsController < ApplicationController
   before_action :back_to_top, only: [:edit, :destroy]
 
   def index
-    @products = Product.all.order("created_at DESC")
+    @products = Product.all.order('created_at DESC')
   end
-  
 
   def new
     @product = Product.new
@@ -44,7 +43,8 @@ class ProductsController < ApplicationController
   private
 
   def product_params
-    params.require(:product).permit(:image, :products_name, :description, :category_id, :condition_id, :delivery_change_id, :delivery_source_id, :preparation_period_id, :price).merge(user_id: current_user.id)
+    params.require(:product).permit(:image, :products_name, :description, :category_id, :condition_id, :delivery_change_id,
+                                    :delivery_source_id, :preparation_period_id, :price).merge(user_id: current_user.id)
   end
 
   def catch_product
@@ -52,8 +52,6 @@ class ProductsController < ApplicationController
   end
 
   def back_to_top
-    unless current_user == @product.user
-      redirect_to root_path
-    end
+    redirect_to root_path unless current_user == @product.user
   end
 end

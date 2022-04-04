@@ -7,14 +7,14 @@ RSpec.describe OrderProduct, type: :model do
       product = FactoryBot.create(:product)
       # purchase = Purchase.create(user_id: user.id, product_id: product.id)
       @shipping_address = FactoryBot.build(:order_product, user_id: user.id, product_id: product.id)
-      sleep 0.1 
+      sleep 0.1
     end
 
     context '商品の購入ができる場合' do
       it '全ての情報が正しく入力されていると購入できる' do
         expect(@shipping_address).to be_valid
       end
-      
+
       it '建物名が空欄でも購入できる' do
         @shipping_address.building = ''
         expect(@shipping_address).to be_valid
@@ -30,17 +30,17 @@ RSpec.describe OrderProduct, type: :model do
       it '郵便番号に-(ハイフン)が含まれていないと購入できない' do
         @shipping_address.post_code = '1231234'
         @shipping_address.valid?
-        expect(@shipping_address.errors.full_messages).to include("Post code is invalid. Include hyphen(-)")
+        expect(@shipping_address.errors.full_messages).to include('Post code is invalid. Include hyphen(-)')
       end
       it '郵便番号が全角数字だと購入できない' do
         @shipping_address.post_code = '１２３-１２３４'
         @shipping_address.valid?
-        expect(@shipping_address.errors.full_messages).to include("Post code is invalid. Include hyphen(-)")
+        expect(@shipping_address.errors.full_messages).to include('Post code is invalid. Include hyphen(-)')
       end
       it '郵便番号が「3桁以外-4桁」だと購入できない' do
         @shipping_address.post_code = '12-1234'
         @shipping_address.valid?
-        expect(@shipping_address.errors.full_messages).to include("Post code is invalid. Include hyphen(-)")
+        expect(@shipping_address.errors.full_messages).to include('Post code is invalid. Include hyphen(-)')
       end
       it '郵便番号が「3桁-4桁以外」だと購入できない' do
         @shipping_address.post_code = '123-12345'
@@ -53,7 +53,7 @@ RSpec.describe OrderProduct, type: :model do
       it '都道府県に「---」が選択されている場合は購入できない' do
         @shipping_address.delivery_source_id = 0
         @shipping_address.valid?
-        expect(@shipping_address.errors.full_messages).to include("Delivery source must be other than 0")
+        expect(@shipping_address.errors.full_messages).to include('Delivery source must be other than 0')
       end
       it '市区町村が無いと購入できない' do
         @shipping_address.city = ''
@@ -73,22 +73,22 @@ RSpec.describe OrderProduct, type: :model do
       it '電話番号に-(ハイフン)が含まれていると購入できない' do
         @shipping_address.phone_number = '000-1234-5678'
         @shipping_address.valid?
-        expect(@shipping_address.errors.full_messages).to include("Phone number is invalid. Do not include hyphen(-)")
+        expect(@shipping_address.errors.full_messages).to include('Phone number is invalid. Do not include hyphen(-)')
       end
       it '電話番号が全角数字だと購入できない' do
         @shipping_address.phone_number = '０００１２３４５６７８'
         @shipping_address.valid?
-        expect(@shipping_address.errors.full_messages).to include("Phone number is invalid. Do not include hyphen(-)")
+        expect(@shipping_address.errors.full_messages).to include('Phone number is invalid. Do not include hyphen(-)')
       end
       it '電話番号が9桁以下だと購入できない' do
         @shipping_address.phone_number = '000123456'
         @shipping_address.valid?
-        expect(@shipping_address.errors.full_messages).to include("Phone number is invalid. Do not include hyphen(-)")
+        expect(@shipping_address.errors.full_messages).to include('Phone number is invalid. Do not include hyphen(-)')
       end
       it '電話番号が12桁以上だと購入できない' do
         @shipping_address.phone_number = '000123456789'
         @shipping_address.valid?
-        expect(@shipping_address.errors.full_messages).to include("Phone number is invalid. Do not include hyphen(-)")
+        expect(@shipping_address.errors.full_messages).to include('Phone number is invalid. Do not include hyphen(-)')
       end
       it 'userが紐づいていなければ購入できない' do
         @shipping_address.user_id = nil
