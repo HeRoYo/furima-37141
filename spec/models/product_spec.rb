@@ -35,7 +35,7 @@ RSpec.describe Product, type: :model do
       it 'カテゴリーに「---」が選択されている場合は出品できない' do
         @product.category_id = 0
         @product.valid?
-        expect(@product.errors.full_messages).to include("Category must be other than 0")
+        expect(@product.errors.full_messages).to include('Category must be other than 0')
       end
       it '状態の情報が無いと出品できない' do
         @product.condition = nil
@@ -45,7 +45,7 @@ RSpec.describe Product, type: :model do
       it '商品の状態に「---」が選択されている場合は出品できない' do
         @product.condition_id = 0
         @product.valid?
-        expect(@product.errors.full_messages).to include("Condition must be other than 0")
+        expect(@product.errors.full_messages).to include('Condition must be other than 0')
       end
       it '配送料の負担の情報が無いと出品できない' do
         @product.delivery_change = nil
@@ -55,7 +55,7 @@ RSpec.describe Product, type: :model do
       it '配送料の負担に「---」が選択されている場合は出品できない' do
         @product.delivery_change_id = 0
         @product.valid?
-        expect(@product.errors.full_messages).to include("Delivery change must be other than 0")
+        expect(@product.errors.full_messages).to include('Delivery change must be other than 0')
       end
       it '発送元の情報が無いと出品できない' do
         @product.delivery_source = nil
@@ -65,7 +65,7 @@ RSpec.describe Product, type: :model do
       it '発送元の地域に「---」が選択されている場合は出品できない' do
         @product.delivery_source_id = 0
         @product.valid?
-        expect(@product.errors.full_messages).to include("Delivery source must be other than 0")
+        expect(@product.errors.full_messages).to include('Delivery source must be other than 0')
       end
       it '発送までの日数の情報が無いと出品できない' do
         @product.preparation_period = nil
@@ -75,7 +75,7 @@ RSpec.describe Product, type: :model do
       it '発送までの日数に「---」が選択されている場合は出品できない' do
         @product.preparation_period_id = 0
         @product.valid?
-        expect(@product.errors.full_messages).to include("Preparation period must be other than 0")
+        expect(@product.errors.full_messages).to include('Preparation period must be other than 0')
       end
       it '価格の情報が無いと出品できない' do
         @product.price = ''
@@ -85,22 +85,22 @@ RSpec.describe Product, type: :model do
       it '価格は¥300より下だと出品できない' do
         @product.price = '299'
         @product.valid?
-        expect(@product.errors.full_messages).to include("Price is invalid")
+        expect(@product.errors.full_messages).to include('Price is invalid')
       end
       it '価格は¥9,999,999より多いと出品できない' do
         @product.price = '10000000'
         @product.valid?
-        expect(@product.errors.full_messages).to include("Price is invalid")
+        expect(@product.errors.full_messages).to include('Price is invalid')
       end
       it '価格は全角数字だと出品できない' do
         @product.price = '５０００'
         @product.valid?
-        expect(@product.errors.full_messages).to include("Price is invalid")
+        expect(@product.errors.full_messages).to include('Price is invalid')
       end
       it 'userが紐づいていなければ出品できない' do
         @product.user = nil
         @product.valid?
-        expect(@product.errors.full_messages).to include("User must exist")
+        expect(@product.errors.full_messages).to include('User must exist')
       end
     end
   end
