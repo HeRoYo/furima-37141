@@ -29,7 +29,7 @@ class Product < ApplicationRecord
                     numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999, message: 'is invalid' }
 
   def self.search(search)
-    if search != ""
+    if search != ''
       Product.where('products_name LIKE(?)', "%#{search}%")
       Product.where('description LIKE(?)', "%#{search}%")
     else
