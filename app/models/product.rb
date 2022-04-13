@@ -27,4 +27,12 @@ class Product < ApplicationRecord
 
   validates :price, presence: true,
                     numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999, message: 'is invalid' }
+
+  def self.search(search)
+    if search != ""
+      Product.where('text LIKE(?)', "%#{search}%")
+    else
+      Product.all
+    end
+  end
 end
