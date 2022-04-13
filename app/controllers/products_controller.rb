@@ -42,7 +42,7 @@ class ProductsController < ApplicationController
   end
 
   def search
-    @product = Product.search(params[:keyword])
+    @products = Product.search(params[:keyword]).order('created_at DESC')
   end
 
   private

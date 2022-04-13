@@ -1,3 +1,36 @@
 <%= render "shared/header" %>
 
+<div class='item-contents'>
+    <ul class='item-lists'>
+      <% @products.each do |product| %>
+        <li class='list'>
+          <%= link_to product_path(product.id), method: :get do %>
+          <div class='item-img-content'>
+            <%= image_tag product.image, class: "item-img" %>
+
+            <% if product.purchase.present? %>
+            <div class='sold-out'>
+              <span>Sold Out!!</span>
+            </div>
+            <% end %>
+
+          </div>
+          <div class='item-info'>
+            <h3 class='item-name'>
+              <%= product.products_name %>
+            </h3>
+            <div class='item-price'>
+              <span><%= product.price %>円<br><%= product.delivery_change.name %></span>
+              <div class='star-btn'>
+                <%= image_tag "star.png", class:"star-icon" %>
+                <span class='star-count'>0</span>
+              </div>
+            </div>
+          </div>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+</div>
+
 <%= render "shared/footer" %>
