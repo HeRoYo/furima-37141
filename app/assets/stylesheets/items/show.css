@@ -205,3 +205,22 @@
   font-weight: bold;
   font-size: 23px;
 }
+
+.comment{
+  display: flex;
+}
+
+.comment p{
+   margin: 0;
+}
+
+.user-info{
+  color: gray;
+  font-weight: bold;
+}
+
+.comment-date{
+  font-size: 12px;
+  color: gray;
+  padding-left: 10px;
+}
