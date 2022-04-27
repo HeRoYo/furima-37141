@@ -22,6 +22,8 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
+    @comments = @product.comments.includes(:user)
+    @comment = Comment.new
   end
 
   def edit

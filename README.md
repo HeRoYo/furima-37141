@@ -18,6 +18,7 @@
 
 - has_many: products
 - has_many: purchases
+- has_many: comments
 
 ## products テーブル
 
@@ -37,6 +38,7 @@
 
 - belongs_to: user
 - has_one: purchase
+- has_many: comments
 
 ## purchases
 
@@ -66,3 +68,16 @@
 ### Association
 
 - belongs_to: purchase
+
+## comments
+
+| Column           | Type      | Options                        |
+|------------------|-----------|--------------------------------|
+| text             | text      | null: false                    |
+| user             | reference | null: false, foreign_key: true |
+| product          | reference | null: false, foreign_key: true |
+
+### Association
+
+- belongs_to: user
+- belongs_to: product
